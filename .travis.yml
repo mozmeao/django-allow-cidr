@@ -8,13 +8,10 @@ python:
 env:
   - TOX_ENV=py36-flake8
   - TOX_ENV=py36-django-18
-  - TOX_ENV=py35-django-18
   - TOX_ENV=py27-django-18
   - TOX_ENV=py36-django-111
-  - TOX_ENV=py35-django-111
   - TOX_ENV=py27-django-111
   - TOX_ENV=py36-django-20
-  - TOX_ENV=py35-django-20
 
 matrix:
   fast_finish: true
@@ -22,6 +19,3 @@ matrix:
 install: pip install -r requirements_test.txt
 
 script: tox -e $TOX_ENV
-
-after_success:
-  - codecov -e TOX_ENV
