@@ -1,0 +1,4 @@
+coverage==4.4.1
+codecov>=2.0.0
+
+# Additional test requirements go here
