@@ -10,11 +10,6 @@ Django Allow CIDR
 
 A Django Middleware to enalbe use of CIDR IP ranges in ALLOWED_HOSTS.
 
-Documentation
--------------
-
-The full documentation is at https://django-allow-cidr.readthedocs.io.
-
 Quickstart
 ----------
 
