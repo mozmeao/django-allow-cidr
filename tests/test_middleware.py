@@ -40,6 +40,8 @@ class TestAllowCIDRMiddleware(TestCase):
         self.assertIsNone(mw.process_request(req))
         req = self.rf.get('/', HTTP_HOST='thebig.lebowski.biz')
         self.assertIsNone(mw.process_request(req))
+        req = self.rf.get('/', HTTP_HOST='thebig.lebowski.biz:8000')
+        self.assertIsNone(mw.process_request(req))
         with self.assertRaises(DisallowedHost):
             req = self.rf.get('/', HTTP_HOST='donnie.net')
             mw.process_request(req)
