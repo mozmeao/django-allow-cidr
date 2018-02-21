@@ -27,5 +27,5 @@ deploy:
     secure: YmKo0vX7pfCtrXQxv+81+6jti2dENp/d5O5CRyymidZtMW7dbDZS2vD1sCnYovT8R1Fo51mH3+St1Ft1mHaOXkbcsJ1zPpVk0++9TojX8qiS0KrFKoE4oitxZn1mqVUyZYHDszqAenpxM/KsIiWU4uurDXQebbDtZ0ZxhBkX3++OwUrnJgtv8LzseU7P9xSmBLQ1wvnfdjFgdkwuRhxpR5e6R8Rjj2mHgo1W1OK0cjafssGtdfQZozcIXM2wc8bJ248BuTTEc0HsIZ3Np4oVi90AwHGzk5hEELBNXdmppU1R5XHQ7KwuSYwkC1QNrVl8VQ5wurxy1yWfSQZY27+TsdgyK4vs9RIJeSRRgzikXvBL7YF6nOHjQYAPZq1hvdJ/g1Xkk2IM5ubaGTse4Nom6uuCAjIstPFv7FlfyfWXegZd8f1FDjQuYac5XBxAcsX+Q9XpIiv42xbqTRprtBBhv4k3N3ezc0rkieAvaGZNX+TRXRDhPo1/KcmbumO8XYqgtib3ImxQZhqVoRdw4ZGGCp2xnHHUF4CQ1sVS4ktuz7At4EciptYMY9z0+V+ARs9ldZGmcTy2qnVd9/8W9fTiCaQzRCRCWUCZGKSXmIgF46ScDMZvQ4nwvEPD2LwY+AimxOY7dIXBfmSnlyktRAKUy+wIjc2Q1iw+cmJqiuiLMhE=
   on:
     tags: true
-    repo: django-allow-cidr
-    condition: $TOXENV == py27
+    repo: mozmeao/django-allow-cidr
+    condition: $TOX_ENV == py36-django-111
