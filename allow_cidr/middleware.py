@@ -32,9 +32,10 @@ class AllowCIDRMiddleware(MiddlewareMixin):
         if validate_host(host, ORIG_ALLOWED_HOSTS):
             return None
 
+        netloc = host.split(':', 1)[0]
         for net in self.allowed_cidr_nets:
             try:
-                if host in net:
+                if netloc in net:
                     return None
             except AddrFormatError:
                 # not an IP
