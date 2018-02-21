@@ -26,6 +26,9 @@ class AllowCIDRMiddleware(MiddlewareMixin):
             # for multiple instances of the middleware.
             ORIG_ALLOWED_HOSTS.extend(settings.ALLOWED_HOSTS)
             settings.ALLOWED_HOSTS = ['*']
+        elif not ORIG_ALLOWED_HOSTS:
+            # ALLOWED_HOSTS was originally set to '*' so no checking is necessary
+            raise MiddlewareNotUsed()
 
     def process_request(self, request):
         host = request.get_host()
