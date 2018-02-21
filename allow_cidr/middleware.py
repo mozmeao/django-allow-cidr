@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.exceptions import DisallowedHost, MiddlewareNotUsed
-from django.http.request import validate_host
+from django.http.request import split_domain_port, validate_host
 
 from netaddr import AddrFormatError, IPNetwork
 
@@ -29,13 +29,13 @@ class AllowCIDRMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
         host = request.get_host()
-        if validate_host(host, ORIG_ALLOWED_HOSTS):
+        domain, port = split_domain_port(host)
+        if domain and validate_host(domain, ORIG_ALLOWED_HOSTS):
             return None
 
-        netloc = host.split(':', 1)[0]
         for net in self.allowed_cidr_nets:
             try:
-                if netloc in net:
+                if domain in net:
                     return None
             except AddrFormatError:
                 # not an IP
