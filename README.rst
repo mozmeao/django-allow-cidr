@@ -27,11 +27,11 @@ It should be the first in the list:
         ...
     )
 
-Add the `ALLOW_CIDR_NETS` setting:
+Add the `ALLOWED_CIDR_NETS` setting:
 
 .. code-block:: python
 
-    ALLOW_CIDR_NETS = ['192.168.1.0/24']
+    ALLOWED_CIDR_NETS = ['192.168.1.0/24']
 
 Profit!
 
@@ -40,9 +40,9 @@ Features
 
 * The normal `ALLOWED_HOSTS` values will also work as intended. This Middleware is intended to augment,
   not replace, the normal Django function.
-* If you do define `ALLOW_CIDR_NETS` and it has values, the middleware will capture what you have in `ALLOWED_HOSTS`,
+* If you do define `ALLOWED_CIDR_NETS` and it has values, the middleware will capture what you have in `ALLOWED_HOSTS`,
   set `ALLOWED_HOSTS` to `['*']` and take over validation of host headers.
-* The `ALLOW_CIDR_NETS` values can be any valid network definition for the `netaddr`_ package.
+* The `ALLOWED_CIDR_NETS` values can be any valid network definition for the `netaddr`_ package.
 
 Running Tests
 -------------
