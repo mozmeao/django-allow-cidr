@@ -47,7 +47,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 setup(
     name='django-allow-cidr',
     version=version,
-    description="""A Django Middleware to enalbe use of CIDR IP ranges in ALLOWED_HOSTS.""",
+    description="""A Django Middleware to enable use of CIDR IP ranges in ALLOWED_HOSTS.""",
     long_description=readme + '\n\n' + history,
     author='Paul McLanahan',
     author_email='pmac@mozilla.com',
