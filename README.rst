@@ -8,7 +8,7 @@ Django Allow CIDR
 .. image:: https://travis-ci.org/mozmeao/django-allow-cidr.svg?branch=master
     :target: https://travis-ci.org/mozmeao/django-allow-cidr
 
-A Django Middleware to enalbe use of CIDR IP ranges in ALLOWED_HOSTS.
+A Django Middleware to enable use of CIDR IP ranges in ALLOWED_HOSTS.
 
 Quickstart
 ----------
