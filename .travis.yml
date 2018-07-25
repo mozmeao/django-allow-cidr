@@ -1,23 +1,15 @@
+sudo: true
+dist: xenial
 language: python
-
 python:
+- '2.7'
+- '3.5'
 - '3.6'
-
-env:
-- TOX_ENV=py36-flake8
-- TOX_ENV=py36-django-18
-- TOX_ENV=py27-django-18
-- TOX_ENV=py36-django-111
-- TOX_ENV=py27-django-111
-- TOX_ENV=py36-django-20
-
+- '3.7'
 matrix:
   fast_finish: true
-
 install: pip install -r requirements_test.txt
-
-script: tox -e $TOX_ENV
-
+script: tox
 deploy:
   provider: pypi
   skip_upload_docs: true
