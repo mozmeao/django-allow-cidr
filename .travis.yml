@@ -20,4 +20,4 @@ deploy:
   on:
     tags: true
     repo: mozmeao/django-allow-cidr
-    condition: $TOX_ENV == py36-django-111
+    python: '3.6'
