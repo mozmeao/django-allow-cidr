@@ -15,6 +15,7 @@ ORIG_ALLOWED_HOSTS = []
 
 class AllowCIDRMiddleware(MiddlewareMixin):
     def __init__(self, *args, **kwargs):
+        super(AllowCIDRMiddleware, self).__init__(*args, **kwargs)
         allowed_cidr_nets = getattr(settings, 'ALLOWED_CIDR_NETS', None)
 
         if not allowed_cidr_nets:
