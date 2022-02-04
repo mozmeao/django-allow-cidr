@@ -1,0 +1,28 @@
+name: "CI" # Note that this name appears in the README's badge
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "2.7"
+          - "3.5"
+          - "3.6"
+          - "3.7"
+          - "3.8"
+          - "3.9"
+          - "3.10"
+    name: Python ${{ matrix.python-version }} in use
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          # Note that all envs will have the default version of Python available,
+          # too. This is 3.8 at time of writing.
+          python-version: ${{ matrix.python-version }}
+          architecture: "x64" # optional x64 (default) or x86.
+      - name: Install test requirements
+        run: pip install -r requirements_test.txt
+      - name: Run tox
+        run: tox

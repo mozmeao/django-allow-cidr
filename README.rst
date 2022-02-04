@@ -5,8 +5,9 @@ Django Allow CIDR
 .. image:: https://badge.fury.io/py/django-allow-cidr.svg
     :target: https://badge.fury.io/py/django-allow-cidr
 
-.. image:: https://travis-ci.org/mozmeao/django-allow-cidr.svg?branch=master
-    :target: https://travis-ci.org/mozmeao/django-allow-cidr
+.. image:: https://github.com/mozmeao/django-allow-cidr/actions/workflows/ci.yml/badge.svg
+   :target: https://github.com/mozmeao/django-allow-cidr/actions
+
 
 A Django Middleware to enable use of CIDR IP ranges in ALLOWED_HOSTS.
 
