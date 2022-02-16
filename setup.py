@@ -57,8 +57,8 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        'Django>=1.8',
-        'netaddr>=0.7.19',
+        "Django>=2.2",
+        "netaddr>=0.7.19",
     ],
     license="Apache Software License 2.0",
     zip_safe=False,

@@ -5,13 +5,34 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version:
-          - "3.6"
-          - "3.7"
-          - "3.8"
-          - "3.9"
-          - "3.10"
-    name: Python ${{ matrix.python-version }} in use
+        include:
+          # This match the tox envs possible, so we can deliberately invoke every one
+          - python-version: "3.6"
+            django-tox-env: "django22"
+          - python-version: "3.7"
+            django-tox-env: "django22"
+          - python-version: "3.8"
+            django-tox-env: "django22"
+          - python-version: "3.9"
+            django-tox-env: "django22"
+
+          - python-version: "3.7"
+            django-tox-env: "django32"
+          - python-version: "3.8"
+            django-tox-env: "django32"
+          - python-version: "3.9"
+            django-tox-env: "django32"
+          - python-version: "3.10"
+            django-tox-env: "django32"
+
+          - python-version: "3.8"
+            django-tox-env: "django40"
+          - python-version: "3.9"
+            django-tox-env: "django40"
+          - python-version: "3.10"
+            django-tox-env: "django40"
+
+    name: Python ${{ matrix.python-version }} in use with ${{ matrix.django-tox-env }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -23,4 +44,17 @@ jobs:
       - name: Install test requirements
         run: pip install -r requirements_test.txt
       - name: Run tox
-        run: tox
+        run: tox -e py${{ matrix.python-version }}-${{ matrix.django-tox-env }}
+
+  lint:
+    runs-on: ubuntu-latest
+    name: Flake 8
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install test requirements
+        run: pip install -r requirements_test.txt
+      - name: Run tox
+        run: tox -e py3.9-flake8
