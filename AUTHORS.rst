@@ -10,4 +10,6 @@ Development Lead
 Contributors
 ------------
 
-None yet. Why not be the first?
+* Steve Jalim <opensource@stevejalim.mozmail.com>
+
+

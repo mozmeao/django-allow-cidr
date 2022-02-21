@@ -6,7 +6,9 @@ jobs:
     strategy:
       matrix:
         include:
-          # This match the tox envs possible, so we can deliberately invoke every one
+          # This matches the tox envs possible, so we can deliberately invoke every one.
+          # If we just called tox -e py3.6 for instance, we'd only get the highest version
+          # of Django used, not also the older versions
           - python-version: "3.6"
             django-tox-env: "django22"
           - python-version: "3.7"
@@ -37,8 +39,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          # Note that all envs will have the default version of Python available,
-          # too. This is 3.8 at time of writing.
           python-version: ${{ matrix.python-version }}
           architecture: "x64" # optional x64 (default) or x86.
       - name: Install test requirements

@@ -18,8 +18,7 @@ Install Django Allow CIDR::
 
     pip install django-allow-cidr
 
-Add the Middleware to your `MIDDLEWARE_CLASSES` (for Django < 1.10) or `MIDDLEWARE` settings.
-It should be the first in the list:
+Add the Middleware to your ``MIDDLEWARE`` settings. It should be the first in the list:
 
 .. code-block:: python
 
@@ -28,7 +27,7 @@ It should be the first in the list:
         ...
     )
 
-Add the `ALLOWED_CIDR_NETS` setting:
+Add the ``ALLOWED_CIDR_NETS`` setting:
 
 .. code-block:: python
 
@@ -39,11 +38,11 @@ Profit!
 Features
 --------
 
-* The normal `ALLOWED_HOSTS` values will also work as intended. This Middleware is intended to augment,
+* The normal ``ALLOWED_HOSTS`` values will also work as intended. This Middleware is intended to augment,
   not replace, the normal Django function.
-* If you do define `ALLOWED_CIDR_NETS` and it has values, the middleware will capture what you have in `ALLOWED_HOSTS`,
-  set `ALLOWED_HOSTS` to `['*']` and take over validation of host headers.
-* The `ALLOWED_CIDR_NETS` values can be any valid network definition for the `netaddr`_ package.
+* If you do define ``ALLOWED_CIDR_NETS`` and it has values, the middleware will capture what you have in `ALLOWED_HOSTS`,
+  set ``ALLOWED_HOSTS`` to `['*']` and take over validation of host headers.
+* The ``ALLOWED_CIDR_NETS`` values can be any valid network definition for the `netaddr`_ package.
 
 Running Tests
 -------------
