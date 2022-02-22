@@ -21,16 +21,16 @@ ROOT_URLCONF = "tests.urls"
 INSTALLED_APPS = []
 
 ALLOWED_HOSTS = [
-    'thedude.abides.com',
-    '.lebowski.biz',
+    "thedude.abides.com",
+    ".lebowski.biz",
 ]
 ALLOWED_CIDR_NETS = [
-    '192.168.1.0/24',
-    '192.168.2.0/24',
+    "192.168.1.0/24",
+    "192.168.2.0/24",
 ]
 
 SITE_ID = 1
 
-MIDDLEWARE = ('allow_cidr.middleware.AllowCIDRMiddleware',)
+MIDDLEWARE = ("allow_cidr.middleware.AllowCIDRMiddleware",)
 if django.VERSION < (1, 10):
     MIDDLEWARE_CLASSES = MIDDLEWARE
