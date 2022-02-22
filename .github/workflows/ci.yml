@@ -1,0 +1,54 @@
+name: "CI" # Note that this name appears in the README's badge
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.6"
+          - "3.7"
+          - "3.8"
+          - "3.9"
+          - "3.10"
+
+        django-tox-env:
+          - "django22"
+          - "django32"
+          - "django40"
+
+        exclude:
+          # We don't want every combination of the above, as some are not compatible
+          - python-version: "3.6"
+            django-tox-env: "django40"
+
+          - python-version: "3.7"
+            django-tox-env: "django40"
+
+          - python-version: "3.10"
+            django-tox-env: "django22"
+
+    name: Python ${{ matrix.python-version }} in use with ${{ matrix.django-tox-env }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: "x64" # optional x64 (default) or x86.
+      - name: Install test requirements
+        run: pip install -r requirements_test.txt
+      - name: Run tox
+        run: tox -e py${{ matrix.python-version }}-${{ matrix.django-tox-env }}
+
+  lint:
+    runs-on: ubuntu-latest
+    name: Flake 8
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install test requirements
+        run: pip install -r requirements_test.txt
+      - name: Run tox
+        run: tox -e py3.9-flake8
