@@ -5,34 +5,28 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-          # This matches the tox envs possible, so we can deliberately invoke every one.
-          # If we just called tox -e py3.6 for instance, we'd only get the highest version
-          # of Django used, not also the older versions
+        python-version:
+          - "3.6"
+          - "3.7"
+          - "3.8"
+          - "3.9"
+          - "3.10"
+
+        django-tox-env:
+          - "django22"
+          - "django32"
+          - "django40"
+
+        exclude:
+          # We don't want every combination of the above, as some are not compatible
           - python-version: "3.6"
-            django-tox-env: "django22"
-          - python-version: "3.7"
-            django-tox-env: "django22"
-          - python-version: "3.8"
-            django-tox-env: "django22"
-          - python-version: "3.9"
-            django-tox-env: "django22"
+            django-tox-env: "django40"
 
           - python-version: "3.7"
-            django-tox-env: "django32"
-          - python-version: "3.8"
-            django-tox-env: "django32"
-          - python-version: "3.9"
-            django-tox-env: "django32"
-          - python-version: "3.10"
-            django-tox-env: "django32"
+            django-tox-env: "django40"
 
-          - python-version: "3.8"
-            django-tox-env: "django40"
-          - python-version: "3.9"
-            django-tox-env: "django40"
           - python-version: "3.10"
-            django-tox-env: "django40"
+            django-tox-env: "django22"
 
     name: Python ${{ matrix.python-version }} in use with ${{ matrix.django-tox-env }}
     steps:
