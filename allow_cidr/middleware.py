@@ -1,4 +1,7 @@
-from distutils.version import StrictVersion
+try:
+    from packaging.version import Version
+except ImportError:
+    from distutils.version import StrictVersion as Version
 
 import django
 from django.conf import settings
@@ -14,7 +17,7 @@ class AllowCIDRMiddleware:
 
         self.get_response = get_response
 
-        if StrictVersion(django.get_version()) < StrictVersion("2.2"):
+        if Version(django.get_version()) < Version("2.2"):
             raise NotImplementedError(
                 "This version of django-allow-cidr requires at least Django 2.2"
             )
