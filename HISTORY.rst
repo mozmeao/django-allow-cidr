@@ -3,6 +3,11 @@
 History
 -------
 
+0.4.1 (2022-06-13)
+++++++++++++++++++
+
+* Use packaging.version to avoid distutils deprecated module - thanks @adamantike!
+
 0.4.0 (2022-02-22)
 ++++++++++++++++++
 
