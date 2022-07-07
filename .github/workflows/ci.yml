@@ -4,7 +4,7 @@ on:
   - pull_request
   - workflow_call
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -53,5 +53,27 @@ jobs:
           python-version: 3.9
       - name: Install test requirements
         run: pip install -r requirements_test.txt
-      - name: Run tox
+      - name: Run flake8 linting
         run: tox -e py3.9-flake8
+
+  release:
+    name: django-allow-cidr Release
+    if: github.event_name == 'release' && github.event.action == 'created'
+    needs:
+      - test
+      - lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install dependencies for package building only
+        run: pip install build
+      - name: Build package for upload to PyPI
+        run: python -m build .
+      - name: Upload the distribution to PyPI
+        uses: pypa/gh-action-pypi-publish@v1.5.0
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}

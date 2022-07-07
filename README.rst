@@ -58,9 +58,10 @@ Does the code actually work?
 
 Pushing to PyPI
 ---------------
-Pushing a new tag (in the format X.Y.Z) to the origin repo on Github will trigger CI checks, followed by an automatic release to PyPI, using that tag as the release version.
+Cutting a new Github release will trigger CI checks, followed by an automatic release to PyPI, using that tag as the release version.
 
-For more details see `.github/workflows/release.yml`.
+For more details see the `release` job in  `.github/workflows/ci.yml`.
+
 
 Credits
 -------
