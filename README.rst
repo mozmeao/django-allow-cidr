@@ -55,6 +55,15 @@ Does the code actually work?
     (myenv) $ pip install tox
     (myenv) $ tox
 
+
+Pushing to PyPI
+---------------
+Cutting a new Github Release will trigger CI checks, followed by an automatic release to PyPI, using the release version.
+Please make sure that your Github Release version matches the project version in `__init__.py`.
+
+For more details see the `release` job in  `.github/workflows/ci.yml`.
+
+
 Credits
 -------
 
