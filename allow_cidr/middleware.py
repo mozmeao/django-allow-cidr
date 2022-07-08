@@ -1,3 +1,5 @@
+import ipaddress
+
 try:
     from packaging.version import Version
 except ImportError:
@@ -7,7 +9,6 @@ import django
 from django.conf import settings
 from django.core.exceptions import DisallowedHost, MiddlewareNotUsed
 from django.http.request import split_domain_port, validate_host
-from netaddr import AddrFormatError, IPNetwork
 
 ORIG_ALLOWED_HOSTS = []
 
@@ -29,7 +30,7 @@ class AllowCIDRMiddleware:
         if not allowed_cidr_nets:
             raise MiddlewareNotUsed()
 
-        self.allowed_cidr_nets = [IPNetwork(net) for net in allowed_cidr_nets]
+        self.allowed_cidr_nets = [ipaddress.ip_network(net) for net in allowed_cidr_nets]
         if settings.ALLOWED_HOSTS != ["*"]:
             # add them to a global so that we keep the original setting
             # for multiple instances of the middleware.
@@ -48,10 +49,10 @@ class AllowCIDRMiddleware:
             should_raise = True
             for net in self.allowed_cidr_nets:
                 try:
-                    if domain in net:
+                    if ipaddress.ip_address(domain) in net:
                         should_raise = False
                         break
-                except AddrFormatError:
+                except ValueError:
                     # not an IP
                     break
 
