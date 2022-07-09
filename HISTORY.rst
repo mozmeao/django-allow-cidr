@@ -3,6 +3,12 @@
 History
 -------
 
+0.5.0 (2022-06-13)
+++++++++++++++++++
+
+* Replace the netaddr dependency with Python 3's ipaddress - thanks @n1ngu!
+* Update GH actions to release to PyPI
+
 0.4.1 (2022-06-13)
 ++++++++++++++++++
 
