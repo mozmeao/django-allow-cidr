@@ -3,7 +3,7 @@
 History
 -------
 
-0.5.0 (2022-06-13)
+0.5.0 (2022-07-09)
 ++++++++++++++++++
 
 * Replace the netaddr dependency with Python 3's ipaddress - thanks @n1ngu!
