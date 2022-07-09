@@ -4,6 +4,8 @@ on:
     branches:
       - master
   pull_request:
+  release:
+    types: [published]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -59,7 +61,7 @@ jobs:
 
   release:
     name: django-allow-cidr Release
-    if: github.event_name == 'release' && github.event.action == 'created'
+    if: github.event_name == 'release' && github.event.action == 'published'
     needs:
       - test
       - lint
