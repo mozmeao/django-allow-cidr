@@ -3,6 +3,13 @@
 History
 -------
 
+0.6.0 (2023-01-05)
+++++++++++++++++++
+
+* Drop dev-related dependencies (incl vulnerable version of wheel, which was not installed in general use)
+* Remove redundant code from setup.py now we're auto-publishing via Github
+* Update testing matrix: Drop Python 3.6; add Python 3.11; add Django 4.1
+
 0.5.0 (2022-07-09)
 ++++++++++++++++++
 
