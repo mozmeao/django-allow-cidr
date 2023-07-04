@@ -1,5 +1,5 @@
 # -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
+from __future__ import absolute_import, unicode_literals
 
 import django
 
@@ -27,6 +27,8 @@ ALLOWED_HOSTS = [
 ALLOWED_CIDR_NETS = [
     "192.168.1.0/24",
     "192.168.2.0/24",
+    "2001:db8:0:1::/64",
+    "2001:db8:0:2::/64",
 ]
 
 SITE_ID = 1

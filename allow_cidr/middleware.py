@@ -15,7 +15,6 @@ ORIG_ALLOWED_HOSTS = []
 
 class AllowCIDRMiddleware:
     def __init__(self, get_response, *args, **kwargs):
-
         self.get_response = get_response
 
         if Version(django.get_version()) < Version("2.2"):
@@ -30,7 +29,9 @@ class AllowCIDRMiddleware:
         if not allowed_cidr_nets:
             raise MiddlewareNotUsed()
 
-        self.allowed_cidr_nets = [ipaddress.ip_network(net) for net in allowed_cidr_nets]
+        self.allowed_cidr_nets = [
+            ipaddress.ip_network(net) for net in allowed_cidr_nets
+        ]
         if settings.ALLOWED_HOSTS != ["*"]:
             # add them to a global so that we keep the original setting
             # for multiple instances of the middleware.
@@ -47,6 +48,9 @@ class AllowCIDRMiddleware:
 
         if not domain or not validate_host(domain, ORIG_ALLOWED_HOSTS):
             should_raise = True
+            if domain[-1] == "]":
+                # It's an IPv6, ignore beginning [ and end ]
+                domain = domain[1:-1]
             for net in self.allowed_cidr_nets:
                 try:
                     if ipaddress.ip_address(domain) in net:
