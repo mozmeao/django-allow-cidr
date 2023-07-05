@@ -34,8 +34,17 @@ class TestAllowCIDRMiddleware(TestCase):
         self.assertIsNone(mw(req))
         req = self.rf.get("/", HTTP_HOST="192.168.2.200:8000")
         self.assertIsNone(mw(req))
+        req = self.rf.get("/", HTTP_HOST="[2001:db8:0:1::11]")
+        self.assertIsNone(mw(req))
+        req = self.rf.get("/", HTTP_HOST="[2001:db8:0:2::200]")
+        self.assertIsNone(mw(req))
+        req = self.rf.get("/", HTTP_HOST="[2001:db8:0:2::200]:8000")
+        self.assertIsNone(mw(req))
         with self.assertRaises(DisallowedHost):
             req = self.rf.get("/", HTTP_HOST="192.168.3.200")
+            mw(req)
+        with self.assertRaises(DisallowedHost):
+            req = self.rf.get("/", HTTP_HOST="[2001:db8:0:3::200]")
             mw(req)
 
     @override_settings(ALLOWED_HOSTS=["thedude.abides.com", ".lebowski.biz"])
