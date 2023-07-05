@@ -48,7 +48,7 @@ class AllowCIDRMiddleware:
 
         if not domain or not validate_host(domain, ORIG_ALLOWED_HOSTS):
             should_raise = True
-            if domain[-1] == "]":
+            if domain and domain[-1] == "]":
                 # It's an IPv6, ignore beginning [ and end ]
                 domain = domain[1:-1]
             for net in self.allowed_cidr_nets:
