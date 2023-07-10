@@ -2,7 +2,7 @@ name: "CI" # Note that this name appears in the README's badge
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
   release:
     types: [published]
@@ -23,6 +23,7 @@ jobs:
           - "django32"
           - "django40"
           - "django41"
+          - "django42"
 
         exclude:
           # We don't want every combination of the above, as some are not compatible
@@ -33,6 +34,9 @@ jobs:
           - python-version: "3.7"
             django-tox-env: "django41"
 
+          - python-version: "3.7"
+            django-tox-env: "django42"
+
           - python-version: "3.10"
             django-tox-env: "django22"
 
@@ -41,8 +45,8 @@ jobs:
 
     name: Python ${{ matrix.python-version }} in use with ${{ matrix.django-tox-env }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
           architecture: "x64" # optional x64 (default) or x86.
@@ -55,14 +59,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Flake 8
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: 3.11
       - name: Install test requirements
         run: pip install -r requirements_test.txt
       - name: Run flake8 linting
-        run: tox -e py3.9-flake8
+        run: tox -e py3.11-flake8
 
   release:
     name: django-allow-cidr Release
@@ -72,16 +76,16 @@ jobs:
       - lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: 3.11
       - name: Install dependencies for package building only
         run: pip install build
       - name: Build package for upload to PyPI
         run: python -m build .
       - name: Upload the distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.5.0
+        uses: pypa/gh-action-pypi-publish@v1.8.7
         with:
           user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}
