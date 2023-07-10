@@ -3,6 +3,12 @@
 History
 -------
 
+0.7.1 (2023-07-10)
+++++++++++++++++++
+
+* Update setup.cfg to rename deprecated licence_file param
+
+
 0.7.0 (2023-07-10)
 ++++++++++++++++++
 
