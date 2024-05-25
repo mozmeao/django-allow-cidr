@@ -17,6 +17,7 @@ jobs:
           - "3.9"
           - "3.10"
           - "3.11"
+          - "3.12"
 
         django-tox-env:
           - "django22"
@@ -24,6 +25,7 @@ jobs:
           - "django40"
           - "django41"
           - "django42"
+          - "django50"
 
         exclude:
           # We don't want every combination of the above, as some are not compatible
@@ -37,11 +39,29 @@ jobs:
           - python-version: "3.7"
             django-tox-env: "django42"
 
+          - python-version: "3.7"
+            django-tox-env: "django50"
+
+          - python-version: "3.8"
+            django-tox-env: "django50"
+
+          - python-version: "3.9"
+            django-tox-env: "django50"
+
           - python-version: "3.10"
             django-tox-env: "django22"
 
           - python-version: "3.11"
             django-tox-env: "django22"
+
+          - python-version: "3.11"
+            django-tox-env: "django40"
+
+          - python-version: "3.12"
+            django-tox-env: "django40"
+
+          - python-version: "3.12"
+            django-tox-env: "django41"
 
     name: Python ${{ matrix.python-version }} in use with ${{ matrix.django-tox-env }}
     steps:
