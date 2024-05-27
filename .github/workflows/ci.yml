@@ -54,6 +54,9 @@ jobs:
           - python-version: "3.11"
             django-tox-env: "django22"
 
+          - python-version: "3.12"
+            django-tox-env: "django22"
+
           - python-version: "3.11"
             django-tox-env: "django40"
 
