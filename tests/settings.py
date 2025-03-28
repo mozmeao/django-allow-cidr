@@ -1,8 +1,6 @@
 # -*- coding: utf-8
 from __future__ import absolute_import, unicode_literals
 
-import django
-
 DEBUG = False
 USE_TZ = True
 
@@ -33,6 +31,4 @@ ALLOWED_CIDR_NETS = [
 
 SITE_ID = 1
 
-MIDDLEWARE = ("allow_cidr.middleware.AllowCIDRMiddleware",)
-if django.VERSION < (1, 10):
-    MIDDLEWARE_CLASSES = MIDDLEWARE
+MIDDLEWARE_CLASSES = ("allow_cidr.middleware.AllowCIDRMiddleware",)
