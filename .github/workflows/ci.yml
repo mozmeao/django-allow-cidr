@@ -26,6 +26,7 @@ jobs:
           - "django41"
           - "django42"
           - "django50"
+          - "django51"
 
         exclude:
           # We don't want every combination of the above, as some are not compatible
@@ -47,6 +48,15 @@ jobs:
 
           - python-version: "3.9"
             django-tox-env: "django50"
+
+          - python-version: "3.7"
+            django-tox-env: "django51"
+
+          - python-version: "3.8"
+            django-tox-env: "django51"
+
+          - python-version: "3.9"
+            django-tox-env: "django51"
 
           - python-version: "3.10"
             django-tox-env: "django22"
@@ -85,11 +95,11 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.12
       - name: Install test requirements
         run: pip install -r requirements_test.txt
       - name: Run flake8 linting
-        run: tox -e py3.11-flake8
+        run: tox -e py3.12-flake8
 
   release:
     name: django-allow-cidr Release
@@ -102,7 +112,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.12
       - name: Install dependencies for package building only
         run: pip install build
       - name: Build package for upload to PyPI
