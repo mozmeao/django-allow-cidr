@@ -3,6 +3,14 @@
 History
 -------
 
+0.8.0 (2025-XX-XX)
+++++++++++++++++++
+
+* Confirm Django 5.0 and 5.1 support.
+* Confirm Python 3.12 support.
+* Drop support for Python 3.7.
+* Drop support for Django < 4.2.
+
 0.6.0 (2023-01-05)
 ++++++++++++++++++
 

@@ -1,11 +1,5 @@
 import ipaddress
 
-try:
-    from packaging.version import Version
-except ImportError:
-    from distutils.version import StrictVersion as Version
-
-import django
 from django.conf import settings
 from django.core.exceptions import DisallowedHost, MiddlewareNotUsed
 from django.http.request import split_domain_port, validate_host
@@ -16,11 +10,6 @@ ORIG_ALLOWED_HOSTS = []
 class AllowCIDRMiddleware:
     def __init__(self, get_response, *args, **kwargs):
         self.get_response = get_response
-
-        if Version(django.get_version()) < Version("2.2"):
-            raise NotImplementedError(
-                "This version of django-allow-cidr requires at least Django 2.2"
-            )
 
         super(AllowCIDRMiddleware, self).__init__(*args, **kwargs)
 

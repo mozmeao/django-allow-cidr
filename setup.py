@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import os
 import re
 
@@ -37,8 +36,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        "Django>=2.2",
-        "packaging",
+        "Django>=4.2",
     ],
     license="Apache Software License 2.0",
     zip_safe=False,
@@ -46,18 +44,16 @@ setup(
     classifiers=[
         "Development Status :: 4 - Beta",
         "Framework :: Django",
-        "Framework :: Django :: 2.2",
-        "Framework :: Django :: 3.2",
-        "Framework :: Django :: 4.0",
-        "Framework :: Django :: 4.1",
         "Framework :: Django :: 4.2",
+        "Framework :: Django :: 5.0",
+        "Framework :: Django :: 5.1",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Apache Software License",
         "Natural Language :: English",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
 )
