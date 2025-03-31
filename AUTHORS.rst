@@ -14,4 +14,5 @@ Contributors
 * Michael Manganiello - https://github.com/adamantike
 * Ningú - https://github.com/n1ngu
 * blag - https://github.com/blag
+* Risson - https://github.com/rissson
 * Mariusz Felisiak - https://www.mariuszfelisiak.org/
