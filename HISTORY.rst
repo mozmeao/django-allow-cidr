@@ -3,6 +3,12 @@
 History
 -------
 
+Unreleased
+++++++++++
+
+* Drop support for Python 3.7.
+* Drop support for Django < 4.2.
+
 0.7.1 (2023-07-10)
 ++++++++++++++++++
 
