@@ -3,6 +3,19 @@
 History
 -------
 
+0.7.1 (2023-07-10)
+++++++++++++++++++
+
+* Update setup.cfg to rename deprecated licence_file param
+
+
+0.7.0 (2023-07-10)
+++++++++++++++++++
+
+* Add IPv6 support - thanks @rissson!
+* Add Django 4.2 to CI; freshen up CI config
+
+
 0.6.0 (2023-01-05)
 ++++++++++++++++++
 
