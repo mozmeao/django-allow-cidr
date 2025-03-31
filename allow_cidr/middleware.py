@@ -11,7 +11,7 @@ class AllowCIDRMiddleware:
     def __init__(self, get_response, *args, **kwargs):
         self.get_response = get_response
 
-        super(AllowCIDRMiddleware, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         allowed_cidr_nets = getattr(settings, "ALLOWED_CIDR_NETS", None)
 
