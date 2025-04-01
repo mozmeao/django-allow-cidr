@@ -7,7 +7,7 @@ History
 ++++++++++++++++++
 
 * Confirm Django 5.0, 5.1, and 5.2 support.
-* Confirm Python 3.12 support.
+* Confirm Python 3.12 and 3.13 support.
 * Drop support for Python 3.7.
 * Drop support for Django < 4.2.
 
