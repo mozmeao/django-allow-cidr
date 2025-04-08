@@ -12,53 +12,28 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - "3.8"
           - "3.9"
           - "3.10"
           - "3.11"
           - "3.12"
           - "3.13"
-
         django-tox-env:
           - "django42"
-          - "django50"
           - "django51"
           - "django52"
-
-        exclude:
-          # We don't want every combination of the above, as some are not compatible
-
+        exclude: # We don't want every combination of the above, as some are not compatible
           - python-version: "3.13"
             django-tox-env: "django42"
-
-          - python-version: "3.8"
-            django-tox-env: "django50"
-
-          - python-version: "3.9"
-            django-tox-env: "django50"
-
-          - python-version: "3.13"
-            django-tox-env: "django50"
-
-          - python-version: "3.8"
-            django-tox-env: "django51"
-
           - python-version: "3.9"
             django-tox-env: "django51"
-
-          - python-version: "3.8"
-            django-tox-env: "django52"
-
           - python-version: "3.9"
             django-tox-env: "django52"
-
-    name: Python ${{ matrix.python-version }} in use with ${{ matrix.django-tox-env }}
+    name: Python ${{ matrix.python-version }} with ${{ matrix.django-tox-env }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          architecture: "x64" # optional x64 (default) or x86.
       - name: Install test requirements
         run: pip install -r requirements_test.txt
       - name: Run tox
@@ -66,16 +41,16 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-    name: Flake 8
+    name: Flake8
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: 3.13
+          python-version: "3.13"
       - name: Install test requirements
         run: pip install -r requirements_test.txt
       - name: Run flake8 linting
-        run: tox -e py3.12-flake8
+        run: tox -e py3.13-flake8
 
   release:
     name: django-allow-cidr Release
@@ -85,10 +60,10 @@ jobs:
       - lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: 3.13
+          python-version: "3.13"
       - name: Install dependencies for package building only
         run: pip install build
       - name: Build package for upload to PyPI
