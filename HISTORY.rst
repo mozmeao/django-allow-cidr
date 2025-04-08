@@ -6,6 +6,11 @@ History
 Unreleased
 ++++++++++
 
+No unreleased changes
+
+0.8.0 (2025-04-08)
+++++++++++++++++++
+
 * Add Django 5.2 to test matrix and remove EOL versions
 * Drop support for Python <3.9 and add 3.13 to CI
 
