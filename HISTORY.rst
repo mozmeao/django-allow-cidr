@@ -6,7 +6,8 @@ History
 Unreleased
 ++++++++++
 
-No unreleased changes
+* Add Django 6.0 to test matrix
+* Drop support for Python <3.10 and add 3.14 to CI
 
 0.8.0 (2025-04-08)
 ++++++++++++++++++

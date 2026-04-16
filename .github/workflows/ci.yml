@@ -1,4 +1,5 @@
-name: "CI" # Note that this name appears in the README's badge
+name: "CI"  # This name appears e.g. in the README's badge
+
 on:
   push:
     branches:
@@ -6,32 +7,38 @@ on:
   pull_request:
   release:
     types: [published]
+
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version:
-          - "3.9"
           - "3.10"
           - "3.11"
           - "3.12"
           - "3.13"
+          - "3.14"
         django-tox-env:
           - "django42"
-          - "django51"
           - "django52"
+          - "django60"
         exclude: # We don't want every combination of the above, as some are not compatible
+          - python-version: "3.10"
+            django-tox-env: "django60"
+          - python-version: "3.11"
+            django-tox-env: "django60"
           - python-version: "3.13"
             django-tox-env: "django42"
-          - python-version: "3.9"
-            django-tox-env: "django51"
-          - python-version: "3.9"
-            django-tox-env: "django52"
+          - python-version: "3.14"
+            django-tox-env: "django42"
     name: Python ${{ matrix.python-version }} with ${{ matrix.django-tox-env }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install test requirements
@@ -43,8 +50,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Flake8
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
       - name: Install test requirements
@@ -60,8 +67,8 @@ jobs:
       - lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
       - name: Install dependencies for package building only
